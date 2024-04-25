@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 import json
 import warnings
-from IPython.display import display
-from IPython.display import Markdown
 from dotenv import load_dotenv
 from io import BytesIO
 from streamlit_pills import pills
@@ -107,9 +105,6 @@ async def main():
         return_resp = process_query(image_file)
         for i, response in enumerate(return_resp, start=1):
             st.markdown(f"Response {i}: {to_markdown(response.text)}")
-
-    # selected = pills("Questions:", ["Option 1", "Option 2", "Option 3"], ["🍀", "🎈", "🌈"])
-    # st.write(selected)
 
 if __name__ == "__main__":
    asyncio.run(main())
