@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import json
 import warnings
-from dotenv import load_dotenv
 from io import BytesIO
 import tempfile
 import os
@@ -16,12 +15,6 @@ import base64
 import vertexai
 from vertexai.generative_models import GenerativeModel, Part, FinishReason
 import vertexai.preview.generative_models as generative_models
-
-# Load environment variables
-load_dotenv()
-
-GOOGLE_API_KEY = os.environ["GOOGLE_API_KEY"]
-
 
 def to_markdown(text):
     text = text.replace('•', '  *')
@@ -94,6 +87,10 @@ async def main():
 
     # Form for input field and button
     with st.form(key='query_form'):
+
+        # google_key = st.text_input("Google API Key.")
+        # GOOGLE_API_KEY = google_key
+
         # Submit button
         submit_button = st.form_submit_button(label="Let's Begin", help="Click to start analysis")
            
