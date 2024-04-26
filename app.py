@@ -4,14 +4,10 @@ import json
 import warnings
 from dotenv import load_dotenv
 from io import BytesIO
-from streamlit_pills import pills
 import tempfile
 import os
 import textwrap
-from PyPDF2 import PdfReader
-from pyppeteer import launch
 import asyncio
-from playwright.async_api import async_playwright
 import subprocess
 from PIL import Image
 import base64
@@ -25,6 +21,7 @@ import vertexai.preview.generative_models as generative_models
 load_dotenv()
 
 GOOGLE_API_KEY = os.environ["GOOGLE_API_KEY"]
+
 
 def to_markdown(text):
     text = text.replace('•', '  *')
@@ -81,6 +78,7 @@ def process_query(image_file):
         safety_settings=safety_settings,
         stream=True,
     )
+
     return responses
 
 async def main():
@@ -95,10 +93,10 @@ async def main():
         st.image(image_file, caption='Uploaded Image', use_column_width=True)
 
     # Form for input field and button
-    with st.form(key='query_form'):       
+    with st.form(key='query_form'):
         # Submit button
         submit_button = st.form_submit_button(label="Let's Begin", help="Click to start analysis")
-            
+           
     # Process query if button is clicked
     if submit_button:
         print("Submit button clicked.")
